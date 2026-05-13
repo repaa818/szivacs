@@ -1,0 +1,48 @@
+{
+  "name": "szivacs",
+  "version": "1.2.1",
+  "description": "e-Kreta asztali kliens",
+  "author": "repaa <repaa@users.noreply.github.com>",
+  "homepage": "https://github.com/repaa/szivacs",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --linux",
+    "build:win": "electron-builder --win"
+  },
+  "build": {
+    "appId": "com.szivacs.app",
+    "productName": "Szivacs",
+    "publish": {
+      "provider": "generic",
+      "url": "https://szivacs.repaa.hu/updates"
+    },
+    "linux": {
+      "target": [
+        { "target": "AppImage", "arch": ["x64"] },
+        { "target": "deb", "arch": ["x64"] }
+      ],
+      "icon": "szivacs_256.png",
+      "category": "Utility"
+    },
+    "win": {
+      "target": [
+        { "target": "nsis", "arch": ["x64"] }
+      ],
+      "icon": "szivacs_256.png"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "*.png"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^42.0.1",
+    "electron-builder": "^25.1.8"
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.3"
+  }
+}

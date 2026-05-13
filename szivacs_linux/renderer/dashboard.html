@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Szivacs</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="mainScreen">
+  <aside id="sidebar">
+    <div class="sidebar-header">
+      <img id="sidebarLogo" src="../szivacs_big.png" class="sidebar-logo-img" alt="Szivacs">
+    </div>
+    <nav class="sidebar-nav">
+      <a data-view="dashboard" class="nav-item active">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2.5" y="2.5" width="6.5" height="6.5" rx="1"/>
+          <rect x="11" y="2.5" width="6.5" height="6.5" rx="1"/>
+          <rect x="2.5" y="11" width="6.5" height="6.5" rx="1"/>
+          <rect x="11" y="11" width="6.5" height="6.5" rx="1"/>
+        </svg>
+        <span>Áttekintés</span>
+      </a>
+      <a data-view="timetable" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2.5" y="3.5" width="15" height="14" rx="1.5"/>
+          <path d="M2.5 7.5h15M6 1v3M10 1v3M14 1v3"/>
+          <circle cx="6.5" cy="10.5" r="1.2" fill="currentColor"/>
+          <circle cx="13.5" cy="13.5" r="1.2" fill="currentColor"/>
+        </svg>
+        <span>Órarend</span>
+      </a>
+      <a data-view="grades" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 4h14M3 8h14M3 12h14M3 16h14"/>
+          <circle cx="16" cy="4" r="2.5" fill="#10b981" stroke="none"/>
+          <path d="M15 4l.7.7 1.3-1.3" stroke="#fff" stroke-width="1.2"/>
+        </svg>
+        <span>Jegyek</span>
+      </a>
+      <a data-view="stats" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2.5" y="10" width="3.5" height="7" rx="0.8"/>
+          <rect x="8.25" y="5" width="3.5" height="12" rx="0.8"/>
+          <rect x="14" y="2" width="3.5" height="15" rx="0.8"/>
+        </svg>
+        <span>Statisztika</span>
+      </a>
+      <a data-view="absences" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 4h12v12H4z"/>
+          <path d="M4 8h12M8 4v12"/>
+          <path d="M4 12h12"/>
+        </svg>
+        <span>Hiányzások</span>
+      </a>
+      <a data-view="calendar" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2.5" y="3.5" width="15" height="14" rx="1.5"/>
+          <path d="M2.5 7.5h15M6 1v3M10 1v3M14 1v3"/>
+          <circle cx="10" cy="11" r="1.5" fill="currentColor"/>
+          <circle cx="14" cy="14" r="1.5" fill="currentColor"/>
+        </svg>
+        <span>Dolgozat Naptár</span>
+      </a>
+      <a data-view="bag" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M5 7h10l1.5 10h-13L5 7z"/>
+          <path d="M7 7V5a3 3 0 016 0v2"/>
+        </svg>
+        <span>Táska</span>
+      </a>
+      <a data-view="homework" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 4h12v14H4z"/>
+          <path d="M8 9l1.5 1.5L12 8M8 13l1.5 1.5L12 12"/>
+          <path d="M7 1v4M13 1v4"/>
+        </svg>
+        <span>Házi feladat</span>
+        <span id="hwBadge" class="nav-badge hidden">0</span>
+      </a>
+
+      <a data-view="info" class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="10" cy="8.5" r="4.5"/>
+          <path d="M2.5 18.5c0-4 3.36-7 7.5-7s7.5 3 7.5 7"/>
+        </svg>
+        <span>Információk</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user" id="sidebarUser" style="cursor:pointer;" title="Beállítások">
+        <div class="avatar" id="userAvatar">S</div>
+        <div class="sidebar-user-info">
+          <span class="sidebar-user-name" id="userName">Felhasználó</span>
+          <span class="sidebar-user-class" id="userClass">–</span>
+        </div>
+      </div>
+      <button id="logoutBtn" class="btn btn-ghost" title="Kijelentkezés">
+        <svg class="btn-icon-sm" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 2H3a1 1 0 00-1 1v10a1 1 0 001 1h3M11 11l3-3-3-3M14 8H6"/>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <main id="content">
+    <div id="loadingOverlay" class="loading-overlay hidden">
+      <div class="spinner"></div>
+    </div>
+
+    <div id="viewDashboard" class="view active">
+      <header class="view-header">
+        <h1>Áttekintés</h1>
+        <p class="view-subtitle" id="dashboardGreeting">Betöltés...</p>
+      </header>
+      <div class="dashboard-grid">
+        <div class="card dash-card" id="dashTimetable">
+          <div class="dash-card-icon" style="background:#0a2840;color:var(--primary);">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2.5" y="3.5" width="15" height="14" rx="1.5"/>
+              <path d="M2.5 7.5h15M6 1v3M10 1v3M14 1v3"/>
+            </svg>
+          </div>
+          <h3>Órarend</h3>
+          <p>A mai órák megtekintése</p>
+        </div>
+        <div class="card dash-card" id="dashGrades">
+          <div class="dash-card-icon" style="background:#0a2840;color:var(--primary);">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 4h14M3 8h14M3 12h14M3 16h14"/>
+            </svg>
+          </div>
+          <h3>Jegyek</h3>
+          <p>Értékelések és átlag</p>
+        </div>
+        <div class="card dash-card" id="dashInfo">
+          <div class="dash-card-icon" style="background:#0a2840;color:var(--primary);">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="10" cy="8.5" r="4.5"/>
+              <path d="M2.5 18.5c0-4 3.36-7 7.5-7s7.5 3 7.5 7"/>
+            </svg>
+          </div>
+          <h3>Információk</h3>
+          <p>Profil és iskolai adatok</p>
+        </div>
+      </div>
+      <div class="dash-sections">
+        <div class="card dash-section" id="dashCurrentLesson">
+          <h2 class="dash-section-title">Aktuális óra</h2>
+          <div id="dashCurrentContent"><div class="empty-state" style="padding:24px;">Töltés...</div></div>
+        </div>
+        <div class="card dash-section" id="dashToday">
+          <h2 class="dash-section-title">Ma</h2>
+          <div id="dashTodayContent"><div class="empty-state" style="padding:24px;">Töltés...</div></div>
+        </div>
+        <div class="card dash-section" id="dashRecent">
+          <h2 class="dash-section-title">Legutóbbi jegyek</h2>
+          <div id="dashRecentContent"><div class="empty-state" style="padding:24px;">Töltés...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="viewTimetable" class="view">
+      <header class="view-header">
+        <h1>Órarend</h1>
+        <div class="week-nav">
+          <button id="prevWeek" class="btn btn-ghost btn-icon">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3l-5 5 5 5"/></svg>
+          </button>
+          <span id="weekLabel" class="week-label">Ezen a héten</span>
+          <button id="nextWeek" class="btn btn-ghost btn-icon">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>
+          </button>
+          <button id="todayBtn" class="btn btn-outline btn-sm">Ma</button>
+          <div class="tt-view-toggle">
+            <button id="ttViewWeekly" class="btn btn-sm active">Heti</button>
+            <button id="ttViewMonthly" class="btn btn-sm">Havi</button>
+          </div>
+        </div>
+      </header>
+      <div id="timetableContainer" class="timetable-wrap">
+        <div class="empty-state">Töltés...</div>
+      </div>
+      <div id="monthlyTimetableContainer" class="timetable-wrap" style="display:none;">
+        <div class="empty-state">Töltés...</div>
+      </div>
+    </div>
+
+    <div id="viewGrades" class="view">
+      <header class="view-header">
+        <h1>Jegyek</h1>
+        <div id="gradesSummary" class="grades-summary"></div>
+      </header>
+      <div style="display:flex;gap:8px;margin-bottom:12px;">
+        <button id="calcBtn" class="btn btn-outline btn-sm">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="1.5"/><path d="M5 5h6M5 8h6M5 11h3"/></svg>
+          Jegy számológép
+        </button>
+      </div>
+      <div class="grades-controls">
+        <select id="gradeFilter" class="input input-select">
+          <option value="all">Minden tárgy</option>
+        </select>
+        <div id="statsBadges" class="stats-badges"></div>
+        <div id="classAvgDisplay" class="class-avg-display" style="display:none;"></div>
+        <div class="grades-layout-toggle">
+          <button id="layoutVertical" class="btn btn-icon active" title="Függőleges nézet">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="5" rx="1"/><rect x="2" y="9" width="12" height="5" rx="1"/></svg>
+          </button>
+          <button id="layoutHorizontal" class="btn btn-icon" title="Vízszintes nézet">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="5" height="12" rx="1"/><rect x="9" y="2" width="5" height="12" rx="1"/></svg>
+          </button>
+        </div>
+      </div>
+      <div id="gradesContainer" class="grades-list">
+        <div class="empty-state">Töltés...</div>
+      </div>
+    </div>
+
+    <div id="viewStats" class="view">
+      <header class="view-header">
+        <h1>Statisztika</h1>
+      </header>
+      <div id="statsContainer">
+        <div class="empty-state">Töltés...</div>
+      </div>
+    </div>
+    <div id="viewAbsences" class="view">
+      <header class="view-header">
+        <h1>Hiányzások</h1>
+        <p class="view-subtitle">Mulasztások nyilvántartása</p>
+      </header>
+      <div id="absencesContainer" class="absences-list">
+        <div class="empty-state">Töltés...</div>
+      </div>
+    </div>
+    <div id="viewCalendar" class="view">
+      <header class="view-header">
+        <h1>Dolgozat Naptár</h1>
+        <p class="view-subtitle">Számonkérések és beadandók</p>
+      </header>
+      <div id="calendarContainer">
+        <div class="empty-state">Töltés...</div>
+      </div>
+    </div>
+    <div id="viewBag" class="view">
+      <header class="view-header">
+        <h1>Táska</h1>
+        <p class="view-subtitle">Mit pakolj ma?</p>
+      </header>
+      <div id="bagContainer">
+        <div class="empty-state">Töltés...</div>
+      </div>
+    </div>
+    <div id="viewHomework" class="view">
+      <header class="view-header">
+        <h1>Házi feladat</h1>
+        <p class="view-subtitle">Kiírt házi feladatok és beadandók</p>
+      </header>
+      <div id="homeworkContainer">
+        <div class="empty-state">Töltés...</div>
+      </div>
+    </div>
+    <div id="viewInfo" class="view">
+      <header class="view-header">
+        <h1>Információk</h1>
+      </header>
+      <div id="infoContainer" class="info-grid">
+        <div class="empty-state">Töltés...</div>
+      </div>
+    </div>
+
+
+  </main>
+</div>
+
+<div id="splashScreen" class="splash-screen">
+  <div class="splash-content">
+    <img src="../szivacs_big.png" class="splash-logo" alt="Szivacs">
+    <div class="spinner" style="margin-top:24px;"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+<div id="gradeDetailOverlay" class="gd-overlay hidden">
+  <div id="gradeDetailPanel" class="gd-panel"></div>
+</div>
+<div id="settingsOverlay" class="gd-overlay hidden">
+  <div id="settingsPanel" class="gd-panel" style="max-width:380px;">
+    <div class="gd-header">
+      <h2 style="font-size:16px;font-weight:600;">Beállítások</h2>
+      <button id="settingsClose" class="btn btn-ghost btn-icon" style="margin-left:auto;">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+      </button>
+    </div>
+    <div class="gd-body">
+      <div class="gd-row"><span class="gd-label">Téma</span>
+        <select id="themeSelect" class="input input-select" style="max-width:140px;font-size:12px;">
+          <option value="dark">Sötét</option>
+          <option value="light">Világos</option>
+          <option value="midnight">Éjfél</option>
+          <option value="forest">Erdő</option>
+          <option value="sunset">Naplemente</option>
+          <option value="ocean">Óceán</option>
+        </select>
+      </div>
+
+      <div class="gd-section-title">Kezdés</div>
+      <div class="gd-row"><span class="gd-label">Kezdő oldal</span>
+        <select id="settingStartPage" class="input input-select" style="max-width:130px;font-size:12px;">
+          <option value="dashboard">Áttekintés</option>
+          <option value="timetable">Órarend</option>
+          <option value="grades">Jegyek</option>
+        </select>
+      </div>
+
+      <div class="gd-section-title">Órarend</div>
+      <div class="gd-row setting-row"><label class="setting-toggle"><input type="checkbox" id="setTtTests" checked><span class="toggle-slider"></span>Teszt jelzések</label></div>
+      <div class="gd-row setting-row"><label class="setting-toggle"><input type="checkbox" id="setTtSubs" checked><span class="toggle-slider"></span>Helyettesítés jelzése</label></div>
+      <div class="gd-row setting-row"><label class="setting-toggle"><input type="checkbox" id="setTtAB" checked><span class="toggle-slider"></span>A/B hét felirat</label></div>
+      <div class="gd-row setting-row"><label class="setting-toggle"><input type="checkbox" id="setTtDismissed" checked><span class="toggle-slider"></span>Elengedett órák</label></div>
+
+      <div class="gd-section-title">Jegyek</div>
+      <div class="gd-row"><span class="gd-label">Kerekítési küszöb</span>
+        <select id="settingRounding" class="input input-select" style="max-width:90px;font-size:12px;">
+          <option value="0.50">0.50</option>
+          <option value="0.55">0.55</option>
+          <option value="0.60">0.60</option>
+          <option value="0.65">0.65</option>
+          <option value="0.70">0.70</option>
+          <option value="0.75">0.75</option>
+          <option value="0.80">0.80</option>
+          <option value="0.85">0.85</option>
+          <option value="0.90">0.90</option>
+          <option value="0.95">0.95</option>
+          <option value="0.99">0.99</option>
+        </select>
+      </div>
+      <div class="gd-row setting-row"><label class="setting-toggle"><input type="checkbox" id="setShowClassAvg" checked><span class="toggle-slider"></span>Osztályátlag mutatása</label></div>
+
+      <div class="gd-section-title">Megjelenés</div>
+      <div class="gd-row setting-row"><label class="setting-toggle"><input type="checkbox" id="setCompact"><span class="toggle-slider"></span>Kompatk nézet</label></div>
+
+      <div class="gd-section-title">Fiókok</div>
+      <div class="gd-row" style="flex-direction:column;align-items:stretch;gap:8px;">
+        <select id="accountSelect" class="input input-select"></select>
+        <div style="display:flex;gap:8px;">
+          <button id="addAccountBtn" class="btn btn-outline btn-sm" style="flex:1;">+ Fiók hozzáadása</button>
+          <button id="removeAccountBtn" class="btn btn-outline btn-sm" style="flex:0;color:var(--danger);">Eltávolítás</button>
+        </div>
+      </div>
+
+      <div class="gd-section-title">Alkalmazás</div>
+      <div class="gd-row"><span class="gd-label">Verzió</span><span id="versionLabel" style="font-size:12px;color:var(--text-dim);">–</span></div>
+      <div class="gd-row" style="flex-direction:column;align-items:stretch;gap:8px;">
+        <button id="checkUpdateBtn" class="btn btn-outline btn-sm" style="width:100%;">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3v10M3 8h10"/></svg>
+          Frissítések keresése
+        </button>
+        <div id="updateStatus" style="font-size:11px;color:var(--text-dim);text-align:center;min-height:18px;"></div>
+        <div id="updateProgressWrap" class="hidden" style="display:none;flex-direction:column;gap:4px;">
+          <div class="progress-bar"><div id="updateProgressBar" class="progress-bar-fill" style="width:0%;"></div></div>
+          <span id="updateProgressLabel" style="font-size:10px;color:var(--text-dim);text-align:center;">0%</span>
+        </div>
+        <button id="installUpdateBtn" class="btn btn-sm" style="width:100%;display:none;background:var(--primary);color:#fff;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:600;">
+          Telepítés most
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="calcOverlay" class="gd-overlay hidden">
+  <div id="calcPanel" class="gd-panel" style="max-width:400px;">
+    <div class="gd-header">
+      <h2 style="font-size:16px;font-weight:600;">Jegy számológép</h2>
+      <button id="calcClose" class="btn btn-ghost btn-icon" style="margin-left:auto;">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+      </button>
+    </div>
+    <div class="gd-body">
+      <div class="gd-row"><span class="gd-label">Jelenlegi átlag</span><span id="calcCurrentAvg" style="font-weight:700;">–</span></div>
+      <div class="gd-row"><span class="gd-label">Jegyek száma</span><span id="calcGradeCount">–</span></div>
+      <div class="gd-hint" id="calcSubjectHint" style="display:none;font-size:12px;color:var(--text-dim);"></div>
+      <div class="gd-row" style="border-top:1px solid var(--border);padding-top:12px;margin-top:4px;flex-direction:column;align-items:stretch;gap:8px;">
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span class="gd-label" style="width:auto;">Mit kapok, ha</span>
+          <input id="calcInputGrade" type="number" min="1" max="5" step="0.5" value="5" class="input" style="width:60px;text-align:center;padding:4px 8px;">
+          <span class="gd-label" style="width:auto;">-ös jegyet kapok?</span>
+        </div>
+        <div id="calcResult" style="text-align:center;font-size:18px;font-weight:700;color:var(--primary);padding:8px 0;">–</div>
+      </div>
+      <div class="gd-row" style="flex-direction:column;align-items:stretch;gap:8px;padding-top:12px;">
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span class="gd-label" style="width:auto;">Mennyi kéne az</span>
+          <input id="calcInputTarget" type="number" min="1" max="5" step="0.25" value="4.0" class="input" style="width:60px;text-align:center;padding:4px 8px;">
+          <span class="gd-label" style="width:auto;">-es átlaghoz?</span>
+        </div>
+        <div id="calcTargetResult" style="text-align:center;font-size:18px;font-weight:700;color:var(--primary);padding:8px 0;">–</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="subjDetailOverlay" class="gd-overlay hidden">
+  <div id="subjDetailPanel" class="gd-panel" style="max-width:500px;">
+    <div class="gd-header">
+      <h2 id="subjDetailTitle" style="font-size:16px;font-weight:600;"></h2>
+      <button id="subjDetailClose" class="btn btn-ghost btn-icon" style="margin-left:auto;">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+      </button>
+    </div>
+    <div id="subjDetailBody" class="gd-body"></div>
+  </div>
+</div>
+<script src="dashboard.js"></script>
+</body>
+</html>

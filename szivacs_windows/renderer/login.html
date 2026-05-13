@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Szivacs - Bejelentkezés</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-page">
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="login-brand">
+      <img id="loginLogoImg" src="../szivacs_big.png" class="login-logo" alt="Szivacs">
+    </div>
+    <h1 class="login-title">Szivacs</h1>
+    <p class="login-subtitle">e-Kreta asztali kliens</p>
+    <button id="loginBtn" class="btn btn-primary btn-large">
+      <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M10 3v14M3 10h14"/>
+      </svg>
+      Bejelentkezés
+    </button>
+    <p class="login-hint">Kreta fiókkal</p>
+    <div id="loginError" class="msg msg-error hidden"></div>
+    <div id="loginLoading" class="login-loading hidden">
+      <div class="spinner"></div>
+      <span>Kérem várjon...</span>
+    </div>
+  </div>
+</div>
+<script src="login.js"></script>
+</body>
+</html>
